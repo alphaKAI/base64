@@ -57,7 +57,7 @@ Linux:
   
 作者
 -------------------
-α改 @alpha_kai_NET  
+α改 @alpha_kai_NET<https://twitter.com/alpha_kai_NET>  
   
   
 WEB SITE
