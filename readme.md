@@ -32,19 +32,19 @@ Windows:
     >compiler cl /c *.c  
     >lib *.obj  
     >cd ../
-    >cl *.c sugarless12/*.lib
+    >cl 64.c sugarless12/*.lib
   
 Linux:  
     $ cd sugarless12  
     $ gcc -c *.c  
     $ ar rv sugarless12.a *.o  
     $ cd ../  
-    $ gcc -o base64 *.c sugarless12/*.a  
+    $ gcc -o b64 b64.c sugarless12/*.a  
   
 
   
 使い方  
-    COMMAND : base64 [Option] [String] [OUTPUTFILENAME]  
+    COMMAND : b64 [Option] [String] [OUTPUTFILENAME]  
     [Option]:  
     -e  :  文字列のエンコード  
     -d  :  文字列のデコード  
