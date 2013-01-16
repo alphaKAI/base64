@@ -17,7 +17,7 @@ VERSION
 ------------------
 Sugarless<http://ishibasystems.ikaduchi.com/downloads/d_8/main.htmlSugarless>12 著作者 石橋祥太 / 藤代晴嵐 LICENSE: NYSL Version 0.9982  
 Sugarless12はファイルを必要最低限にしてあります  
-readme.txtがSugarless12フォルダにreadme.txtが入っていますのでそちらもお読みください  
+readme.txtがSugarless12のreadme隣りますのでそちらもお読みください  
 簡易base64エンコーダ/デコーダ 著作者 α改 LICENSE GPLv3  
 GPLv3については同梱のLICENSEフォルダのLICENSE(原文)/LICENSE_ja(日本語訳)をご覧ください  
   
