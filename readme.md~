@@ -7,12 +7,6 @@
 簡易base64エンコーダ/デコーダです  
   
   
-VERSION
-------------------
-2012/1/16 04_FIX  
-:文字コードをUTF-8に統一  
-  
-  
 使用ライブラリ/ライセンス
 ------------------
 Sugarless<http://ishibasystems.ikaduchi.com/downloads/d_8/main.htmlSugarless>12 著作者 石橋祥太 / 藤代晴嵐 LICENSE: NYSL Version 0.9982  

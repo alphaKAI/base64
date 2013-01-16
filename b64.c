@@ -1,163 +1,163 @@
 #include <stdio.h>
-#include "base64.h"
+#include "b64.h"
 
-//Sugarlessƒ‰ƒCƒuƒ‰ƒŠ  ’˜ìÒ Î‹´Ë‘¾ / “¡‘ã°—’@@@g—p
-//ŠÈˆÕBase64 ƒGƒ“ƒR[ƒ_/ƒfƒR[ƒ_
+//Sugarlessãƒ©ã‚¤ãƒ–ãƒ©ãƒª è‘—ä½œè€… çŸ³æ©‹ç¥¥å¤ª / è—¤ä»£æ™´åµã€€ã€€ã€€ä½¿ç”¨
+//ç°¡æ˜“Base64 ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€/ãƒ‡ã‚³ãƒ¼ãƒ€
 //LICENSE GPLv3
-//copyright (C) ƒ¿‰ü @alpha_kai_NET 2012-2013 alpha-kai-net.info /* “¡‘ã°—’ */
-//Special Thanks! ==> ‰B‚µƒRƒ}ƒ“ƒhÀ‘• : “¡é°—’ @FujishiroSeiran
+//copyright (C) Î±æ”¹ @alpha_kai_NET 2012-2013 alpha-kai-net.info /* è—¤ä»£æ™´åµ */
+//Special Thanks! ==> éš ã—ã‚³ãƒãƒ³ãƒ‰å®Ÿè£… : è—¤åŸæ™´åµæ° @FujishiroSeiran
 #define VER 04
 
 void pf(void);
 
 int main(int argc, char *argv[]){
 
-	int num;
-	int sum;
-	char *str;
-	char *ind;
-	int i;
-	int rl;
-	int sm;
-	int za;
-	int asma;
-	asma=0;
-	za=0;
-	rl=0;
-	if(argc==1){
-		pf();
-		return 1;
-	}
+int num;
+int sum;
+char *str;
+char *ind;
+int i;
+int rl;
+int sm;
+int za;
+int asma;
+asma=0;
+za=0;
+rl=0;
+if(argc==1){
+pf();
+return 1;
+}
 
 
-	if(strcmp(argv[1],"--help")==0 && argc!=2){
-		sum=1;
-		asma=1;
-	}
-	if(strcmp(argv[1],"-fe")==0 || strcmp(argv[1],"-fd")==0){
-		if(argc!=4){
-			sum=1;
-			za=1;
-		}
-	}
-	if(strcmp(argv[1],"-e")!=0 && strcmp(argv[1],"-d")!=0 && strcmp(argv[1],"-t")!=0 && strcmp(argv[1],"-v")!=0 && strcmp(argv[1],"--help")!=0 && strcmp(argv[1],"-fe")!=0 && strcmp(argv[1],"-fd")!=0){
-		sum=2;
-		asma=1;
-	}
-	//-v
-	if(strcmp(argv[1],"-v")==0){
-		printf("ŠÈˆÕbase64ƒGƒ“ƒR[ƒ_/ƒfƒR[ƒ_ VER:0.0%d\n", VER);
-		printf("ìÒ:ƒ¿‰ü\n\n");
-		return 0;
-	}
+if(strcmp(argv[1],"--help")==0 && argc!=2){
+sum=1;
+asma=1;
+}
+if(strcmp(argv[1],"-fe")==0 || strcmp(argv[1],"-fd")==0){
+if(argc!=4){
+sum=1;
+za=1;
+}
+}
+if(strcmp(argv[1],"-e")!=0 && strcmp(argv[1],"-d")!=0 && strcmp(argv[1],"-t")!=0 && strcmp(argv[1],"-v")!=0 && strcmp(argv[1],"--help")!=0 && strcmp(argv[1],"-fe")!=0 && strcmp(argv[1],"-fd")!=0){
+sum=2;
+asma=1;
+}
+//-v
+if(strcmp(argv[1],"-v")==0){
+printf("ç°¡æ˜“base64ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€/ãƒ‡ã‚³ãƒ¼ãƒ€ VER:0.0%d\n", VER);
+printf("ä½œè€…:Î±æ”¹\n\n");
+return 0;
+}
 
-	if(asma==1 || za==1){
-		if(strcmp(argv[1],"-e")==0 || strcmp(argv[1],"-d") || strcmp(argv[1],"-t")==0){
-			sum=2;
-		}
-		if(argc!=0 && sum==1){
-			printf("ˆø”‚Ì”‚ª•s³‚Å‚·\n\n");
-		}
-		else if(argc!=0 && sum==2){
-			printf("ƒIƒvƒVƒ‡ƒ“‚ª•s³‚Å‚·\n\n");
-		}
-		//g‚¢•û
-		pf();
+if(asma==1 || za==1){
+if(strcmp(argv[1],"-e")==0 || strcmp(argv[1],"-d") || strcmp(argv[1],"-t")==0){
+sum=2;
+}
+if(argc!=0 && sum==1){
+printf("å¼•æ•°ã®æ•°ãŒä¸æ­£ã§ã™\n\n");
+}
+else if(argc!=0 && sum==2){
+printf("ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒä¸æ­£ã§ã™\n\n");
+}
+//ä½¿ã„æ–¹
+pf();
 
-		printf("I—¹‚µ‚Ü‚·\n");
-		return argc;
-	}
-	else{//-e
-		if(strcmp(argv[1],"-e")==0){
-			str=c2b(argv[2], strlen(argv[2]), 0);
-			if(str==NULL){
-				printf("•¶š—ñ‚ÌƒGƒ“ƒR[ƒh‚É¸”s‚µ‚Ü‚µ‚½\n");
-				return 6;
-			}
-			num=1;
-		}//-d
-		else if(strcmp(argv[1],"-d")==0){
-			str=b2c(argv[2], NULL);
-			if(str==NULL){
-				printf("•¶š—ñ‚ÌƒfƒR[ƒh‚É¸”s‚µ‚Ü‚µ‚½\n");
-				return 3;
-			}
-			num=2;
-		}//-t
-		else if(strcmp(argv[1],"-t")==0){
-			str=malloc((strlen(argv[2]) * 4 + 24) * sizeof(char));
-			sprintf(str, "Q");
-			for(num = 0; num < strlen(argv[2]) / 2 + 2; num++) strcat(str, "l");
-			sprintf(str, "%sQ\n„@%s@ƒ\nPY", str, argv[2]);
-			for(num = 0; num < strlen(argv[2]) / 2; num++) strcat(str, "^Y");
-			strcat(str, "P");
-			ind=str;
-			num=0;
-		}//-fe
-		else if(strcmp(argv[1],"-fe")==0){
-			sm=f2b(argv[2],argv[3]);
-			if(sm==0){
-				printf("ƒtƒ@ƒCƒ‹ƒGƒ“ƒR[ƒh‚É¸”s‚µ‚Ü‚µ‚½\n");
-				return 7;
-			}
-			num=3;
-		}//-fd
-		else if(strcmp(argv[1],"-fd")==0){
-			sm=b2f(argv[2],argv[3]);
-			if(sm==0){
-				printf("ƒtƒ@ƒCƒ‹ƒfƒR[ƒh‚É¸”s‚µ‚Ü‚µ‚½\n");
-				return 8;
-			}
-			num=4;
-		}
-		//ƒXƒe[ƒ^ƒX
-		switch(num){
-			case 1:
-				ind="STRING ENCODE";
-			break;
-			case 2:
-				ind="STRING DECODE";
-			break;
-			case 3:
-				ind="FILE ENCODE";
-				rl=1;
-			break;
-			case 4:
-				ind="FILE DECODE";
-				rl=1;
-			break;
-		}
-		if(rl==0){
-			printf("INPUT FILE:%s\n", argv[2]);
-			printf("MODE:\n%s\n", ind);
-			printf("RESULT:\n%s\n", str);
-			free(str);
-		}
-		else if(rl==1){
-			printf("INPUT FILE:%s\n", argv[2]);
-			printf("MODE:\n%s\n", ind);
-			printf("RESULT FILE:%s\n", argv[3]);
-		}
-	}
+printf("çµ‚äº†ã—ã¾ã™\n");
+return argc;
+}
+else{//-e
+if(strcmp(argv[1],"-e")==0){
+str=c2b(argv[2], strlen(argv[2]), 0);
+if(str==NULL){
+printf("æ–‡å­—åˆ—ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
+return 6;
+}
+num=1;
+}//-d
+else if(strcmp(argv[1],"-d")==0){
+str=b2c(argv[2], NULL);
+if(str==NULL){
+printf("æ–‡å­—åˆ—ã®ãƒ‡ã‚³ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
+return 3;
+}
+num=2;
+}//-t
+else if(strcmp(argv[1],"-t")==0){
+str=malloc((strlen(argv[2]) * 4 + 24) * sizeof(char));
+sprintf(str, "ï¼¿");
+for(num = 0; num < strlen(argv[2]) / 2 + 2; num++) strcat(str, "äºº");
+sprintf(str, "%sï¼¿\nï¼ã€€%sã€€ï¼œ\nï¿£Y", str, argv[2]);
+for(num = 0; num < strlen(argv[2]) / 2; num++) strcat(str, "^Y");
+strcat(str, "ï¿£");
+ind=str;
+num=0;
+}//-fe
+else if(strcmp(argv[1],"-fe")==0){
+sm=f2b(argv[2],argv[3]);
+if(sm==0){
+printf("ãƒ•ã‚¡ã‚¤ãƒ«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
+return 7;
+}
+num=3;
+}//-fd
+else if(strcmp(argv[1],"-fd")==0){
+sm=b2f(argv[2],argv[3]);
+if(sm==0){
+printf("ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚³ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸ\n");
+return 8;
+}
+num=4;
+}
+//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+switch(num){
+case 1:
+ind="STRING ENCODE";
+break;
+case 2:
+ind="STRING DECODE";
+break;
+case 3:
+ind="FILE ENCODE";
+rl=1;
+break;
+case 4:
+ind="FILE DECODE";
+rl=1;
+break;
+}
+if(rl==0){
+printf("INPUT FILE:%s\n", argv[2]);
+printf("MODE:\n%s\n", ind);
+printf("RESULT:\n%s\n", str);
+free(str);
+}
+else if(rl==1){
+printf("INPUT FILE:%s\n", argv[2]);
+printf("MODE:\n%s\n", ind);
+printf("RESULT FILE:%s\n", argv[3]);
+}
+}
 
-	printf("COMPLETE\n");
+printf("COMPLETE\n");
 
-	return 0;
+return 0;
 }
 
 void pf(void){
 
-		printf("ŠÈˆÕbase64ƒGƒ“ƒR[ƒ_/ƒfƒR[ƒ_ VER:0.0%d\n", VER);
-		printf("ìÒ:ƒ¿‰ü\n\n");
-		printf("g—p•û–@:\n");
-		printf("COMMAND : base64 [Option] [String] [OUTPUTFILENAME]\n");
-		printf("[Option]:\n");
-		printf("-e  :  •¶š—ñ‚ÌƒGƒ“ƒR[ƒh\n");
-		printf("-d  :  •¶š—ñ‚ÌƒfƒR[ƒh\n");
-		printf("-fe  :  ƒtƒ@ƒCƒ‹‚ÌƒGƒ“ƒR[ƒh\n");
-		printf("-fd  :  ƒtƒ@ƒCƒ‹‚ÌƒfƒR[ƒh\n");
-		printf("ƒtƒ@ƒCƒ‹‚ÌƒGƒ“ƒfƒR‚Ì‚Æ‚«‚Ì‚İOUTPUTFILENAME‚Í‚Â‚©‚¦‚Ü‚·\n");
-		printf("--help  :  g‚¢•û•\¦(Œ»İ‚Ìo—Í‚Æ“¯‚¶‚Å‚·)\n");
-		printf("-v  :  ƒo[ƒWƒ‡ƒ“î•ñ\n");
+printf("ç°¡æ˜“base64ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€/ãƒ‡ã‚³ãƒ¼ãƒ€ VER:0.0%d\n", VER);
+printf("ä½œè€…:Î±æ”¹\n\n");
+printf("ä½¿ç”¨æ–¹æ³•:\n");
+printf("COMMAND : base64 [Option] [String] [OUTPUTFILENAME]\n");
+printf("[Option]:\n");
+printf("-e : æ–‡å­—åˆ—ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰\n");
+printf("-d : æ–‡å­—åˆ—ã®ãƒ‡ã‚³ãƒ¼ãƒ‰\n");
+printf("-fe : ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰\n");
+printf("-fd : ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚³ãƒ¼ãƒ‰\n");
+printf("ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¨ãƒ³ãƒ‡ã‚³ã®ã¨ãã®ã¿OUTPUTFILENAMEã¯ã¤ã‹ãˆã¾ã™\n");
+printf("--help : ä½¿ã„æ–¹è¡¨ç¤º(ç¾åœ¨ã®å‡ºåŠ›ã¨åŒã˜ã§ã™)\n");
+printf("-v : ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±\n");
 
 }
